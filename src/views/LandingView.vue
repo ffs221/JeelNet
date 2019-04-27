@@ -35,7 +35,11 @@ export default {
       font-size: 64px;
     }
     &__subtitle {
-      font-size: 32px;
+      font-size: 28px;
+    }
+    &__btn {
+      width: 8vw;
+      height: 2vh;
     }
   }
 }

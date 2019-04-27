@@ -28,10 +28,15 @@
   &__right {
     display: flex;
     align-items: center;
-    padding: 0 2vw;
+    margin-right: 2vw;
     &__link {
+      width: 5vw;
       color: black;
       text-decoration: none;
+      transition: all 0.5s;
+      &:hover {
+        font-weight: bold;
+      }
     }
     &__link + &__link {
       margin-left: 3vw;

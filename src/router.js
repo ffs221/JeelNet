@@ -1,7 +1,9 @@
 import Vue from "vue";
 import Router from "vue-router";
 
+import LandingView from "@/views/LandingView";
 import HomeView from "@/views/HomeView";
+
 import ConversationView from "@/views/ConversationView";
 import InboxView from "@/views/InboxView";
 
@@ -22,6 +24,11 @@ export default new Router({
   routes: [
     {
       path: "/",
+      name: "LandingView",
+      component: LandingView
+    },
+    {
+      path: "/home",
       name: "HomeView",
       component: HomeView
     },

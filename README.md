@@ -21,3 +21,15 @@ pip install Django
 python3 manage.py runserver
 
 ```
+3. Export python path
+```
+export PYTHONPATH=$pwd
+```
+4. Export Django Settings Module
+```
+export DJANGO_SETTINGS_MODULE=JeelNet.settings
+```
+5. Now you can use django-admin instead of python3 manage.py
+```
+django-admin runserver
+```

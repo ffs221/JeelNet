@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const CircularJSON = require('circular-json');
+const jaccard = require('jaccard');
 
 const User = require('./models/user.js');
 const Topic = require('./models/topic.js');
@@ -101,8 +102,9 @@ app.post('/newuser', (request, response) => {
 
 
 app.get('/search', (request, response) => {
-    var topiclist = Json.parse(request.query.topics);
+    var topiclist = decodeURIComponent(request.query.topics).split(',');
     console.log(topiclist);
+
 });
 
 app.listen(port, () => {

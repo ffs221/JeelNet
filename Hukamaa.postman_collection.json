@@ -1,0 +1,149 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Hukamaa",
+		"_postman_id": "74eb7303-5573-fcab-0fa2-1947da00f6d6",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Topic",
+			"request": {
+				"url": "http://localhost:3000/newtopic",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"title\": \"books\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"url": "http://localhost:3000/newuser",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"name\": \"Amanda\",\n\t\"type\": \"Senior\",\n\t\"topics\": [\"basic\", \"shopping\"],\n\t\"image\": \"https://www.thebeaverton.com/wp-content/uploads/2018/05/smiling-old-guy.jpg\",\n\t\"age\": 65,\n\t\"location\": \"Abu Dhabi\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get topics",
+			"request": {
+				"url": "http://localhost:3000/topics",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"title\": \"learning\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get user",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/person?id=5cc46c9d1e64d22a533d0a14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"person"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "5cc46c9d1e64d22a533d0a14",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"title\": \"learning\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search for wise ones",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/search?topics=basic",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "topics",
+							"value": "basic",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"title\": \"learning\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

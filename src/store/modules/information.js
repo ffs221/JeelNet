@@ -4,11 +4,7 @@ const state = {
   topics: []
 };
 
-const getters = {
-  topics: state => {
-    return state.topics;
-  }
-};
+const getters = {};
 
 const actions = {
   getTopics({ commit }) {

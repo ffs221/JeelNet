@@ -29,9 +29,13 @@ export default {
   justify-content: center;
   align-items: center;
   &__center {
+    width: 40%;
+    text-align: left;
     &__title {
+      font-size: 64px;
     }
     &__subtitle {
+      font-size: 32px;
     }
   }
 }

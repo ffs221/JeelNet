@@ -8,3 +8,16 @@ Provide opportunities for both the elderly and the younger generations to attemp
 
 ## Link to Presentation:
 https://docs.google.com/presentation/d/1T40K-EwEuZS1GXpM_6TB7lUzpCb5m7o3as2dkzQGoU0/edit#slide=id.g2b974cb5f_2_76 
+
+
+## Django setup issues:
+1. Install Django:
+
+```
+pip install Django
+```
+2. Go into JeelNet folder and run following command:
+```
+python3 manage.py runserver
+
+```

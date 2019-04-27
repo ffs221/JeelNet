@@ -6,20 +6,16 @@ class Type(models.Model):
     user_type = models.CharField (max_length=50, unique=True)
 class Topic (models.Model):
     title = models.CharField(max_length=50, unique=True)
-    id=models.CharField(max_length=100,  primary_key=True)
     def __init__(self):
          super(Topic, self).__init__()
-         self.id = str(uuid.uuid4())
     def __unicode__(self):
         return self.title
 
 class Message(models.Model):
     subject = models.CharField(max_length=200)
     body = models.TextField()
-    id=models.CharField(max_length=100,  primary_key=True)
     def __init__(self):
          super(Message, self).__init__()
-         self.id = str(uuid.uuid4())
 
 
 class MessageSerializer(serializers.HyperlinkedModelSerializer):

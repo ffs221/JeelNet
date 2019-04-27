@@ -8,7 +8,10 @@ class Topic (models.Model):
     title = models.CharField(max_length=50, unique=True)
     def __str__(self):
         return self.title
-
+class TopicSerializer (serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Topic
+        fields = ('url', 'title', 'pk')
 class Message(models.Model):
     subject = models.CharField(max_length=200)
     body = models.TextField()

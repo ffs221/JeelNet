@@ -6,9 +6,7 @@ class Type(models.Model):
     user_type = models.CharField (max_length=50, unique=True)
 class Topic (models.Model):
     title = models.CharField(max_length=50, unique=True)
-    def __init__(self):
-         super(Topic, self).__init__()
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 class Message(models.Model):

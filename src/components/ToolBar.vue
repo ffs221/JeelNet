@@ -1,12 +1,11 @@
 <template>
-  <div class="home">Home</div>
+  <section></section>
 </template>
 
 <script>
-export default {
-  name: "Home"
-};
+export default {};
 </script>
 
 <style lang="scss">
 </style>
+

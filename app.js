@@ -214,7 +214,7 @@ app.put('/approveconversation', (request, response) => {
         response.send('Send status!');
     }
     var query = {_id: conversationId};
-    var update = {'isApproved': status, 'toApprove': false};
+    var update = {'$set': {'isApproved': status, 'toApprove': false} };
     var options = {returnNewDocument: true};
 
     db.collection(conversationCollectionName).findOneAndUpdate(query, update, options, function(err, result) {

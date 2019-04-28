@@ -9,19 +9,19 @@
         <div class="home__top__card-container__card" @click="navigateTo('/profile')">
           <img
             class="home__top__card-container__card__image"
-            src="../assets/woodwork.jpg"
+            src="../assets/uae-cooking.jpg"
             alt="img"
           >
-          <h1 class="home__top__card-container__card__title">Woodworks and Stories</h1>
+          <h1 class="home__top__card-container__card__title">Traditional Recipes</h1>
           <p class="home__top__card-container__card__subtitle">Fathur Said - The Wise One</p>
         </div>
         <div class="home__top__card-container__card">
           <img
             class="home__top__card-container__card__image"
-            src="../assets/topic-image.jpg"
+            src="../assets/uae-recipe.jpeg"
             alt="img"
           >
-          <h1 class="home__top__card-container__card__title">Emirati Cusine & Cooking</h1>
+          <h1 class="home__top__card-container__card__title">Cooking Class</h1>
           <p class="home__top__card-container__card__subtitle">The Wise One</p>
         </div>
         <div class="home__top__card-container__card">
@@ -45,24 +45,64 @@
         <div class="home__top__card-container__card">
           <img
             class="home__top__card-container__card__image"
-            src="../assets/boatmaking.jpg"
+            src="../assets/uae-boatmaking.jpg"
             alt="img"
           >
           <h1 class="home__top__card-container__card__title">UAE Traditional Boat Making</h1>
           <p class="home__top__card-container__card__subtitle">The Wise One</p>
         </div>
         <div class="home__top__card-container__card">
-          <img class="home__top__card-container__card__image" src="../assets/dance.jpg" alt="img">
+          <img
+            class="home__top__card-container__card__image"
+            src="../assets/uae-dance.jpg"
+            alt="img"
+          >
           <h1 class="home__top__card-container__card__title">UAE Dance and Music</h1>
           <p class="home__top__card-container__card__subtitle">The Wise One</p>
         </div>
         <div class="home__top__card-container__card">
           <img
             class="home__top__card-container__card__image"
-            src="../assets/topic-image.jpg"
+            src="../assets/uae-cooking.jpg"
             alt="img"
           >
           <h1 class="home__top__card-container__card__title">Cooking Arabic Food</h1>
+          <p class="home__top__card-container__card__subtitle">The Wise One</p>
+        </div>
+        <div class="home__top__card-container__card">
+          <img
+            class="home__top__card-container__card__image"
+            src="../assets/uae-wedding.jpg"
+            alt="img"
+          >
+          <h1 class="home__top__card-container__card__title">UAE Wedding Culture</h1>
+          <p class="home__top__card-container__card__subtitle">The Wise One</p>
+        </div>
+        <div class="home__top__card-container__card">
+          <img
+            class="home__top__card-container__card__image"
+            src="../assets/uae-wedding.jpg"
+            alt="img"
+          >
+          <h1 class="home__top__card-container__card__title">UAE Wedding Culture</h1>
+          <p class="home__top__card-container__card__subtitle">The Wise One</p>
+        </div>
+        <div class="home__top__card-container__card">
+          <img
+            class="home__top__card-container__card__image"
+            src="../assets/uae-wedding.jpg"
+            alt="img"
+          >
+          <h1 class="home__top__card-container__card__title">UAE Wedding Culture</h1>
+          <p class="home__top__card-container__card__subtitle">The Wise One</p>
+        </div>
+        <div class="home__top__card-container__card">
+          <img
+            class="home__top__card-container__card__image"
+            src="../assets/uae-wedding.jpg"
+            alt="img"
+          >
+          <h1 class="home__top__card-container__card__title">UAE Wedding Culture</h1>
           <p class="home__top__card-container__card__subtitle">The Wise One</p>
         </div>
         <div class="home__top__card-container__card">
@@ -142,7 +182,7 @@ export default {
       height: 90vh;
       &__card {
         /* padding: 16px; */
-        height: 90%;
+        height: 93%;
         width: 90%;
         background-color: white;
         border-radius: 25px;

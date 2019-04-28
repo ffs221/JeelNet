@@ -14,22 +14,22 @@
           <div class="userProfile__container__right__cards__card">
             <img
               class="userProfile__container__right__cards__card__image"
-              src="../assets/woodwork.jpg"
+              src="../assets/uae-cooking.jpg"
               alt="img"
             >
-            <h1 class="userProfile__container__right__cards__card__title">Woodworking</h1>
+            <h1 class="userProfile__container__right__cards__card__title">Traditional Recipes</h1>
           </div>
           <div class="userProfile__container__right__cards__card">
             <img
               class="userProfile__container__right__cards__card__image"
-              src="../assets/uae-wedding.jpg"
+              src="../assets/uae-woodworking.jpg"
               alt="img"
             >
-            <h1 class="userProfile__container__right__cards__card__title">UAE Wedding Culture</h1>
+            <h1 class="userProfile__container__right__cards__card__title">Woodworking</h1>
           </div>
         </div>
         <h1>Expertise</h1>
-        <p>Wood Working, Culture</p>
+        <p>Traditional Recipe Cooking, Wood Working</p>
         <h1>Location</h1>
         <p>Abu Dhabi, UAE</p>
       </section>

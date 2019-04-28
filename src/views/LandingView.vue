@@ -19,7 +19,7 @@ export default {
       this.$store.commit("information/setLoading", true);
       setTimeout(() => {
         this.$router.push(param);
-      }, 1000);
+      }, 1);
     }
   }
 };

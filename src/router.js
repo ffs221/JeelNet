@@ -10,6 +10,8 @@ import InboxView from "@/views/InboxView";
 import TopicListView from "@/views/TopicListView";
 import TopicResultView from "@/views/TopicResultView";
 
+import LoginView from "@/views/LoginView";
+
 import SignUpView from "@/views/Signup/SignUpView";
 import SignUpMain from "@/views/Signup/SignUpMain";
 import SignUpSeeker from "@/views/Signup/SignUpSeeker";
@@ -29,18 +31,23 @@ export default new Router({
       component: LandingView
     },
     {
+      path: "/login",
+      name: "LoginView",
+      component: LoginView
+    },
+    {
       path: "/home",
       name: "HomeView",
       component: HomeView
     },
     // INBOX ROUTE
     {
-      path: "/inbox/:uid", // uid: User ID
+      path: "/inbox", // uid: User ID
       name: "InboxView",
       component: InboxView
     },
     {
-      path: "/inbox/:uid/:cid", // cid: Conversation ID
+      path: "/inbox/:cid", // cid: Conversation ID
       name: "ConversationView",
       component: ConversationView
     },

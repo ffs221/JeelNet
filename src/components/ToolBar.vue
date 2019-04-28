@@ -1,10 +1,10 @@
 <template>
   <div class="toolbar">
     <section class="toolbar__top">
-      <h1 class="toolbar__top__logo" @click="navigateTo('/home')">Hakumaa</h1>
+      <h1 class="toolbar__top__logo" @click="navigateTo('/home')">Hukamaa'</h1>
       <section class="toolbar__top__container">
-        <img class="toolbar__top__container__image" src="../assets/wiseman-1.jpg">
-        <p class="toolbar__top__container__name">Jung Soo Lee</p>
+        <img class="toolbar__top__container__image" src="../assets/seeker.jpg">
+        <p class="toolbar__top__container__name">Yung Ju Rick Kim</p>
         <p class="toolbar__top__container__type">The Seeker</p>
       </section>
       <hr class="toolbar__top__hr">
@@ -72,8 +72,8 @@ export default {
       padding-bottom: 11%;
       &__image {
         border-radius: 100%;
-        height: 100px;
-        width: 100px;
+        height: 12vh;
+        width: 12vh;
         background-color: black;
         margin-bottom: 2.5%;
       }

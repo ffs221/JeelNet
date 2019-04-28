@@ -1,7 +1,8 @@
 import apiFunctions from "../../services/apiFunctions";
 
 const state = {
-  topics: []
+  topics: [],
+  loading: false
 };
 
 const getters = {};
@@ -24,6 +25,9 @@ const actions = {
 };
 
 const mutations = {
+  setLoading(state, payload) {
+    state.loading = payload;
+  },
   setTopics(state, topics) {
     state.topics = topics;
   },

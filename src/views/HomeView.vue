@@ -3,9 +3,18 @@
     <section class="home__top">
       <h1 class="home__top__title">
         Recent Topics
-        <span class="home__top__title__sub">See More</span>
+        <span class="home__top__title__sub" @click="navigateTo('/topics')">See More</span>
       </h1>
       <div class="home__top__card-container">
+        <div class="home__top__card-container__card" @click="navigateTo('/profile')">
+          <img
+            class="home__top__card-container__card__image"
+            src="../assets/woodwork.jpg"
+            alt="img"
+          >
+          <h1 class="home__top__card-container__card__title">Woodworks and Stories</h1>
+          <p class="home__top__card-container__card__subtitle">Fathur Said - The Wise One</p>
+        </div>
         <div class="home__top__card-container__card">
           <img
             class="home__top__card-container__card__image"
@@ -31,15 +40,6 @@
             alt="img"
           >
           <h1 class="home__top__card-container__card__title">My Fishing Stories</h1>
-          <p class="home__top__card-container__card__subtitle">The Wise One</p>
-        </div>
-        <div class="home__top__card-container__card">
-          <img
-            class="home__top__card-container__card__image"
-            src="../assets/woodwork.jpg"
-            alt="img"
-          >
-          <h1 class="home__top__card-container__card__title">Woodworks and Techniques</h1>
           <p class="home__top__card-container__card__subtitle">The Wise One</p>
         </div>
         <div class="home__top__card-container__card">
@@ -86,6 +86,14 @@ export default {
   name: "Home",
   created() {
     this.$store.dispatch("information/getTopics");
+    setTimeout(() => {
+      this.$store.commit("information/setLoading", false);
+    }, 2000);
+  },
+  methods: {
+    navigateTo(param) {
+      this.$router.push(param);
+    }
   },
   data() {
     return {
@@ -94,56 +102,6 @@ export default {
           title: "Emirati Cusine & Cooking",
           name: "The Wise One",
           src: "@/assets/topic-image.jpg"
-        },
-        {
-          title: "Emirati Culture",
-          name: "The Wise One",
-          src: "@/assets/uae-culture.png"
-        },
-        {
-          title: "Emirati Cusine & Cooking",
-          name: "The Wise One",
-          src: "@/assets/topic-image.jpg"
-        },
-        {
-          title: "Emirati Cusine & Cooking",
-          name: "The Wise One",
-          src: "@/assets/topic-image.jpg"
-        },
-        {
-          title: "Emirati Cusine & Cooking",
-          name: "The Wise One",
-          src: "../assets/topic-image.jpg"
-        },
-        {
-          title: "Emirati Cusine & Cooking",
-          name: "The Wise One",
-          src: "../assets/topic-image.jpg"
-        },
-        {
-          title: "Emirati Cusine & Cooking",
-          name: "The Wise One",
-          src: "../assets/topic-image.jpg"
-        },
-        {
-          title: "Emirati Cusine & Cooking",
-          name: "The Wise One",
-          src: "../assets/topic-image.jpg"
-        },
-        {
-          title: "Emirati Cusine & Cooking",
-          name: "The Wise One",
-          src: "../assets/topic-image.jpg"
-        },
-        {
-          title: "Emirati Cusine & Cooking",
-          name: "The Wise One",
-          src: "../assets/topic-image.jpg"
-        },
-        {
-          title: "Emirati Cusine & Cooking",
-          name: "The Wise One",
-          src: "../assets/topic-image.jpg"
         }
       ]
     };
@@ -170,6 +128,7 @@ export default {
       margin-bottom: 18px;
       color: black;
       &__sub {
+        cursor: pointer;
         font-size: 12px;
         font-weight: 300;
         text-decoration: underline;

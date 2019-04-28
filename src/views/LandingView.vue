@@ -6,8 +6,7 @@
       <p
         class="landing__center__subtitle"
       >A platform to engage the elderly to realize their full capacity in today's society.</p>
-      <button class="landing__center__btn inverse" @click="navigateTo('/home')">Login</button>
-      <button class="landing__center__btn" @click="navigateTo('/home')">Sign Up</button>
+      <button class="landing__center__btn inverse" @click="navigateTo('/home')">Discover</button>
     </section>
   </div>
 </template>
@@ -17,7 +16,10 @@ export default {
   name: "Landing",
   methods: {
     navigateTo(param) {
-      this.$router.push(param);
+      this.$store.commit("information/setLoading", true);
+      setTimeout(() => {
+        this.$router.push(param);
+      }, 1000);
     }
   }
 };

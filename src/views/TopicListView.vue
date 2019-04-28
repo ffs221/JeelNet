@@ -1,27 +1,30 @@
 <template>
   <div class="topic">
     <section class="topic__top">
-      <input class="topic__top__input" placeholder="Search your topic" type="text" v-model="search">
+      <input
+        class="topic__top__input"
+        placeholder="Search your topic"
+        type="text"
+        v-model.lazy="search"
+      >
       <img class="topic__top__search" src="../assets/search-icon.png" alt="search">
     </section>
     <section class="topic__bottom">
-      <div class="topic__bottom__card-container">
-        <div class="topic__bottom__card-container__card">
-          <section class="topic__bottom__card-container__card__image"></section>
-          <h1 class="topic__bottom__card-container__card__title">TITLE</h1>
-          <p class="topic__bottom__card-container__card__subtitle">NAME</p>
-        </div>
-      </div>
+      <TopicResults :propsData="search"/>
     </section>
   </div>
 </template>
 
 <script>
+import TopicResults from "@/components/TopicResults";
 export default {
   data() {
     return {
       search: ""
     };
+  },
+  components: {
+    TopicResults
   }
 };
 </script>
@@ -34,7 +37,7 @@ export default {
   margin-left: 20vw;
   width: 80vw;
   min-height: 100vh;
-  background-color: $main_brown;
+  background-color: $main_grain;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,44 +76,7 @@ export default {
     }
   }
   &__bottom {
-    width: 85%;
-    &__card-container {
-      display: grid;
-      grid-template-columns: 25% 25% 25% 25%;
-      grid-template-rows: 33% 33% 33%;
-      height: 90vh;
-      &__card {
-        /* padding: 16px; */
-        height: 90%;
-        width: 90%;
-        background-color: white;
-        border-radius: 25px;
-        transition: all 0.5s;
-        cursor: pointer;
-        &:hover {
-          box-shadow: 0px 14px 40px rgba(34, 35, 58, 0.5);
-        }
-        &__image {
-          border-radius: 25px 25px 0 0;
-          height: 70%;
-          width: 100%;
-          background-color: blue;
-        }
-        &__title,
-        &__subtitle {
-          text-align: left;
-          padding-left: 12px;
-          font-family: $font_main;
-        }
-        &__title {
-          padding-top: 8px;
-          font-size: 14px;
-        }
-        &__subtitle {
-          font-size: 12px;
-        }
-      }
-    }
+    width: 80%;
   }
 }
 </style>

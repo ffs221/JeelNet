@@ -197,8 +197,12 @@ app.post('/newconversation', (request, response) => {
     });
 
     var insertConversation = Conversation(conversation);
-    db.collection(conversationCollectionName).insert(insertConversation);
-    response.status(201).send(CircularJSON.stringify(conversation));
+    db.collection(conversationCollectionName).insertOne(insertConversation, function(err, result) {
+        if(err) {
+            response.send('Error in creating conversation ' + err);
+        }
+        response.status(201).send(result.ops[0]);
+    });
 });
 
 
@@ -209,7 +213,7 @@ app.put('/approveconversation', (request, response) => {
     if(!status) {
         response.send('Send status!');
     }
-    var query = {_id: conver}
+    var query = {_id: conversationId};
     var update = {'isApproved': status, 'toApprove': false};
     var options = {returnNewDocument: true};
 
@@ -263,6 +267,9 @@ app.get('/conversation', (request, response) => {
                 if(err) {
                     response.send('Cannot fetch messages' + err);
                 }
+                if(result == null) {
+                    response.send('No conversation found');
+                }
                 result.messages = results;
                 response.send(result);
             });
@@ -305,12 +312,12 @@ app.post('/newmessage', (request, response) => {
             response.send('Could not retrieve user ' +  err);
         }
 
-        db.collection(conversationCollectionName).findOne({_id: cid}, function(err, result) {
-            if(err || result == null) {
+        db.collection(conversationCollectionName).findOne({_id: cid}, function(err, conv_result) {
+            if(err || conv_result == null) {
                 response.send('Could not retrieve conversation ' + err);
             }
 
-            if(!result.isApproved && !result.toApprove) {
+            if(!conv_result.isApproved && !conv_result.toApprove) {
                 response.send('Cannot send message in this conversation');
             }
 
@@ -323,7 +330,19 @@ app.post('/newmessage', (request, response) => {
                     response.send('Could not make message ' + err);
                 }
 
-                response.send(result);
+                var query = { _id: cid };
+                conv_result.updated = new Date().toISOString();
+                var update = conv_result;
+                var options = { returnNewDocument: true, upsert: true };
+
+                db.collection(conversationCollectionName).findOneAndUpdate(query, update, options, function (err, conv_result) {
+                    if (err) {
+                        response.send('Could not update conversation');
+                    }
+                    if(conv_result) {
+                        response.send(result);
+                    }
+                });
             });
         });
     });

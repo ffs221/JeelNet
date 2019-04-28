@@ -13,7 +13,7 @@ Provide opportunities for both the elderly and the younger generations to attemp
 
 ## Link to Presentation
 
-https://docs.google.com/presentation/d/1T40K-EwEuZS1GXpM_6TB7lUzpCb5m7o3as2dkzQGoU0/edit#slide=id.g2b974cb5f_2_76 
+https://docs.google.com/presentation/d/1YUp12zkemSfb0nHVRFBJtLGlZkAa90Lv4zZ6YY3Niyk/edit?usp=sharing
 
 
 ## Template Structure

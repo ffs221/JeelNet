@@ -13,7 +13,7 @@
           <h1>Fathur Said</h1>
           <p>The Wise One</p>
           <h2>Expertise:</h2>
-          <span>Woodworking, Culture</span>
+          <span>Woodworking, Traditional Recipe Cooking</span>
         </section>
       </div>
       <div class="topicResult__container__user">

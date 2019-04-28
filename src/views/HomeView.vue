@@ -13,7 +13,7 @@
             alt="img"
           >
           <h1 class="home__top__card-container__card__title">Traditional Recipes</h1>
-          <p class="home__top__card-container__card__subtitle">Fathur Said - The Wise One</p>
+          <p class="home__top__card-container__card__subtitle">The Wise One</p>
         </div>
         <div class="home__top__card-container__card">
           <img
@@ -81,37 +81,37 @@
         <div class="home__top__card-container__card">
           <img
             class="home__top__card-container__card__image"
-            src="../assets/uae-wedding.jpg"
+            src="../assets/uae-gardening.jpg"
             alt="img"
           >
-          <h1 class="home__top__card-container__card__title">UAE Wedding Culture</h1>
+          <h1 class="home__top__card-container__card__title">Gardening Tips</h1>
           <p class="home__top__card-container__card__subtitle">The Wise One</p>
         </div>
         <div class="home__top__card-container__card">
           <img
             class="home__top__card-container__card__image"
-            src="../assets/uae-wedding.jpg"
+            src="../assets/uae-pearl.jpg"
             alt="img"
           >
-          <h1 class="home__top__card-container__card__title">UAE Wedding Culture</h1>
+          <h1 class="home__top__card-container__card__title">Pearl Farm History</h1>
           <p class="home__top__card-container__card__subtitle">The Wise One</p>
         </div>
         <div class="home__top__card-container__card">
           <img
             class="home__top__card-container__card__image"
-            src="../assets/uae-wedding.jpg"
+            src="../assets/uae-falconry.jpg"
             alt="img"
           >
-          <h1 class="home__top__card-container__card__title">UAE Wedding Culture</h1>
+          <h1 class="home__top__card-container__card__title">Falconry</h1>
           <p class="home__top__card-container__card__subtitle">The Wise One</p>
         </div>
         <div class="home__top__card-container__card">
           <img
             class="home__top__card-container__card__image"
-            src="../assets/uae-wedding.jpg"
+            src="../assets/uae-coffee.jpg"
             alt="img"
           >
-          <h1 class="home__top__card-container__card__title">UAE Wedding Culture</h1>
+          <h1 class="home__top__card-container__card__title">Coffee and Conversations</h1>
           <p class="home__top__card-container__card__subtitle">The Wise One</p>
         </div>
       </div>

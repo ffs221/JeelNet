@@ -9,7 +9,10 @@ const TopicSchema = new mongoose.Schema({
     title: {
         type: String
     },
-        created: { // created time - used for matching
+    image: {
+        type: String,
+    },
+    created: { // created time - used for matching
         type: Date,
         default: Date.now,
     },

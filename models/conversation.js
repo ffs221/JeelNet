@@ -14,9 +14,13 @@ const ConversationSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    messages: {
-        type: Array,
-        default: [],
+    isApproved: {
+        type: Boolean,
+        default: false,
+    },
+    toApprove: {
+        type: Boolean,
+        default: true,
     },
     created: { // created time - used for matching
         type: Date,
@@ -27,6 +31,6 @@ const ConversationSchema = new mongoose.Schema({
         default: Date.now,
     },
 
-}, { collection: 'users' });
+}, { collection: 'conversations' });
 
 module.exports = exports = mongoose.model('Conversation', ConversationSchema);

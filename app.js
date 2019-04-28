@@ -8,6 +8,7 @@ const jaccard = require('jaccard');
 const User = require('./models/user.js');
 const Topic = require('./models/topic.js');
 const Conversation = require('./models/conversation.js');
+const Message = require('./models/message.js');
 
 // from resource import resource
 // Make sure to change this in client as well
@@ -61,12 +62,28 @@ app.post('/newtopic', (request, response) => {
     if (!topic._id) {
         topic._id = mongoose.Types.ObjectId().toString();
     }
+
     if(!topic.title) {
         response.send('Cannot create empty topic');
     }
-    var insertTopic = Topic(topic);
-    db.collection(topicCollectionName).insert(insertTopic);
-    response.status(201).send('Created topic ' + topic.title);
+
+    db.collection(topicCollectionName).findOne({title: topic.title}, function(err, results) {
+
+        if(err) {
+            response.send('Error in creating topic', err);
+        }
+
+        if(results == null) {
+            var insertTopic = Topic(topic);
+            db.collection(topicCollectionName).insert(insertTopic);
+            response.status(201).send('Created topic ' + topic.title);
+
+        }
+        else {
+            response.send('Topic already exists');
+        }
+    });
+
 });
 
 // Get all topics / topics that match certain string
@@ -74,7 +91,6 @@ app.get('/topics', (request, response) => {
 
     if (!request.query.search) request.query.search = '';
     var query = { 'title': { '$regex': request.query.search } };
-    console.log(query);
     db.collection(topicCollectionName).find(query).sort({created: -1}).toArray(function(err, results) {
         if(results) {
             // if request.query.search
@@ -87,6 +103,7 @@ app.get('/topics', (request, response) => {
     });
 });
 
+
 app.post('/newuser', (request, response) => {
     var user = request.body;
 
@@ -94,6 +111,19 @@ app.post('/newuser', (request, response) => {
         response.send('No username provided!');
     }
 
+    if(user.topics) {
+        for(index in user.topics) {
+            var topictitle = user.topics[index];
+            db.collection(topicCollectionName).findOne({title: topictitle}, function(err, results) {
+
+                if(results == null) {
+                    var insertTopic = { _id: mongoose.Types.ObjectId().toString(), title: topictitle};
+                    db.collection(topicCollectionName).insert(insertTopic);
+                    console.log('Created topic ' + topictitle);
+                }
+            })
+        }
+    }
     var insertUser = User(user);
     db.collection(userCollectionName).insert(insertUser);
     response.status(201).send(CircularJSON.stringify(user));
@@ -106,7 +136,7 @@ app.get('/search', (request, response) => {
     var searchParams = {
         "type": "Senior",
     }
-    db.collection(userCollectionName).find(searchParams).toArray(function (err, results) {
+    db.collection(userCollectionName).find(searchParams).sort({created: -1}).toArray(function (err, results) {
         if(err) {
             console.log('Error retrieving wise folks', err);
         }
@@ -146,7 +176,7 @@ app.get('/person', (request, response) => {
     });
 });
 
-app.get('/newconversation', (request, response) => {
+app.post('/newconversation', (request, response) => {
     var conversation = request.body;
     // required id1 and id2
 
@@ -154,10 +184,23 @@ app.get('/newconversation', (request, response) => {
         response.send('Need both ids !');
     }
 
+    db.collection(userCollectionName).findOne({ _id: conversation.id1 }, function (err, result) {
+        if (err) {
+            response.send('Cannot find id1 ! ');
+        }
+    });
+
+    db.collection(userCollectionName).findOne({ _id: conversation.id2 }, function (err, result) {
+        if (err) {
+            response.send('Cannot find id2 ! ');
+        }
+    });
+
     var insertConversation = Conversation(conversation);
     db.collection(conversationCollectionName).insert(insertConversation);
     response.status(201).send(CircularJSON.stringify(conversation));
 });
+
 
 app.put('/approveconversation', (request, response) => {
     var status = request.body.status;
@@ -167,7 +210,7 @@ app.put('/approveconversation', (request, response) => {
         response.send('Send status!');
     }
     var query = {_id: conver}
-    var update = {'isApproved': status};
+    var update = {'isApproved': status, 'toApprove': false};
     var options = {returnNewDocument: true};
 
     db.collection(conversationCollectionName).findOneAndUpdate(query, update, options, function(err, result) {
@@ -177,6 +220,112 @@ app.put('/approveconversation', (request, response) => {
         if(result) {
             response.send('Updated status ' + CircularJSON.stringify(result) );
         }
+    });
+});
+
+
+app.get('/inbox', (request, response) => {
+    var id = request.query.id;
+
+    db.collection(userCollectionName).findOne({_id: id}, function(err, result) {
+        
+        if(err) {
+            response.send('Error in searching id', err);
+        }
+        if(result == null) {
+            response.send('No user found');
+        }
+
+        // check for all conversations where this id is either in id1 or id2
+        var options = {};
+        var query = { '$or': [{ 'id1': id }, { 'id2': id }] };
+        db.collection(conversationCollectionName).find(query, options).sort({updated: -1}).toArray(function (err, results) {
+            if(err) {
+                response.send('Cannot fetch conversations', err);
+            }
+            response.send(results);
+        });
+    });
+});
+
+app.get('/conversation', (request, response) => {
+    var cid = request.query.id;
+
+    if(cid) {
+        db.collection(conversationCollectionName).findOne({_id: cid}, function(err, result) {
+            if(err || result == null) {
+                response.send('Cannot fetch conversation' + err);
+            }
+    
+            var query = {conversation: cid};
+            var options = {};
+            db.collection(messageCollectionName).find(query, options).sort({created: -1}).toArray(function (err, results) {
+                if(err) {
+                    response.send('Cannot fetch messages' + err);
+                }
+                result.messages = results;
+                response.send(result);
+            });
+        });
+    }
+    else {
+        var id1 = request.query.id1;
+        var id2 = request.query.id2;
+        if(!id1 || !id2) {
+            response.send('Need to send conv id or id1 and id2!');
+        }
+        var query = { '$or': [{ 'id1': id1, 'id2': id2 }, { 'id2': id1, 'id1': id2 }] };
+        db.collection(conversationCollectionName).findOne(query, function(err, result) {
+            if(err || result == null) {
+                response.send('Cannot find conversation ' + err);
+            }
+            
+            var conv_query = {conversation: result._id};
+            db.collection(messageCollectionName).find(conv_query).sort({ created: -1 }).toArray(function (err, results) {
+                if (err) {
+                    response.send('Cannot fetch messages' + err);
+                }
+                result.messages = results;
+                response.send(result);
+            });
+        });
+    }
+});
+
+app.post('/newmessage', (request, response) => {
+    var cid = request.body.conversation;
+    var senderid = request.body.sender;
+    var content = request.body.content;
+
+    if(!cid || !senderid || !content) {
+        response.send('Need to provide conv id, sender id and content!');
+    }
+    db.collection(userCollectionName).findOne({_id: senderid}, function(err, result) {
+        if(err || result == null) {
+            response.send('Could not retrieve user ' +  err);
+        }
+
+        db.collection(conversationCollectionName).findOne({_id: cid}, function(err, result) {
+            if(err || result == null) {
+                response.send('Could not retrieve conversation ' + err);
+            }
+
+            if(!result.isApproved && !result.toApprove) {
+                response.send('Cannot send message in this conversation');
+            }
+
+            // create message
+            var message = { _id: mongoose.Types.ObjectId().toString(), 
+                            content: content, sender: senderid, conversation: cid};
+            var insertMessage = Message(message);
+            db.collection(messageCollectionName).insert(insertMessage, function(err, result) {
+                if(err) {
+                    response.send('Could not make message ' + err);
+                }
+
+                response.send(result);
+            });
+        });
     });
 });
 

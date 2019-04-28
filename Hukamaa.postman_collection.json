@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "Create Topic",
+			"name": "1. Create Topic",
 			"request": {
 				"url": "http://localhost:3000/newtopic",
 				"method": "POST",
@@ -28,7 +28,47 @@
 			"response": []
 		},
 		{
-			"name": "Create User",
+			"name": "6. Create Conversation",
+			"request": {
+				"url": "http://localhost:3000/newconversation",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"id1\": \"5cc45dae6331b65b5967ce85\",\n\t\"id2\": \"5cc46c9d1e64d22a533d0a14\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "7. Approve conversation",
+			"request": {
+				"url": "http://localhost:3000/approveconversation",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"conversationid\": \"\",\n\t\"status\": true\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "3. Create User",
 			"request": {
 				"url": "http://localhost:3000/newuser",
 				"method": "POST",
@@ -41,14 +81,34 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \n\t\"name\": \"Amanda\",\n\t\"type\": \"Senior\",\n\t\"topics\": [\"basic\", \"shopping\"],\n\t\"image\": \"https://www.thebeaverton.com/wp-content/uploads/2018/05/smiling-old-guy.jpg\",\n\t\"age\": 65,\n\t\"location\": \"Abu Dhabi\"\n}\n"
+					"raw": "{ \n\t\"name\": \"Naman\",\n\t\"type\": \"Senior\",\n\t\"topics\": [\"cooking\"],\n\t\"image\": \"https://www.thebeaverton.com/wp-content/uploads/2018/05/smiling-old-guy.jpg\",\n\t\"age\": 65,\n\t\"location\": \"Abu Dhabi\"\n}\n"
 				},
 				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "Get topics",
+			"name": "10. Create message",
+			"request": {
+				"url": "http://localhost:3000/newmessage",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"content\": \"Hi\",\n\t\"sender\": \"5cc45dae6331b65b5967ce85\",\n\t\"conversation\": \"5cc4a5cd515c05265ceed744\"\n\t\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "2. Get topics",
 			"request": {
 				"url": "http://localhost:3000/topics",
 				"method": "GET",
@@ -68,7 +128,130 @@
 			"response": []
 		},
 		{
-			"name": "Get user",
+			"name": "8. Get inbox",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/inbox?id=5cc45dae6331b65b5967ce85",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"inbox"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "5cc45dae6331b65b5967ce85",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"title\": \"learning\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "9. Get specific conversation",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/conversation?id=5cc4a5cd515c05265ceed744",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"conversation"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "5cc4a5cd515c05265ceed744",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"title\": \"learning\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "9. Get specific conversation by user id",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/conversation?id1=5cc46c9d1e64d22a533d0a14&id2=5cc45dae6331b65b5967ce85",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"conversation"
+					],
+					"query": [
+						{
+							"key": "id1",
+							"value": "5cc46c9d1e64d22a533d0a14",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "id2",
+							"value": "5cc45dae6331b65b5967ce85",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"title\": \"learning\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4. Get user",
 			"request": {
 				"url": {
 					"raw": "http://localhost:3000/person?id=5cc46c9d1e64d22a533d0a14",
@@ -107,7 +290,7 @@
 			"response": []
 		},
 		{
-			"name": "Search for wise ones",
+			"name": "5. Search for wise ones",
 			"request": {
 				"url": {
 					"raw": "http://localhost:3000/search?topics=basic",
